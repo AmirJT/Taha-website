@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitarist Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* Initial hidden state for smooth transitions */
+        body {
+            background-color: #1a1a1a;
+            color: #e6e6e6;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Fade-in effect on load */
+        body.fade-in {
+            opacity: 1;
+        }
+
+        /* Fade-out effect on page leave */
+        body.fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #00bfff;
+            text-shadow: 0 0 8px #00bfff, 0 0 12px #00bfff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1em;
+            color: #cccccc;
+            margin-bottom: 30px;
+        }
+
+        .guitarist-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        .guitarist-card {
+            background: linear-gradient(135deg, #2e2e2e, #1c1c1c);
+            border: 1px solid #3a3a3a;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .guitarist-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.7);
+        }
+
+        .guitarist-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .guitarist-info p {
+            color: #cccccc;
+            font-size: 0.95em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #444, #222);
+            color: #e6e6e6;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #555, #333);
+            transform: scale(1.1);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Guitarists</h1>
+        <p>Discover talented guitarists we are proudly sponsoring. A glimpse of their skills without giving too much away!</p>
+    </header>
+
+    <div class="guitarist-container">
+        <div class="guitarist-card">
+            <img src="assets/images/3.jpg" alt="Guitarist 1" class="guitarist-image">
+            <div class="guitarist-info">
+                <p>Experienced in Jazz and Classical Guitar. Known for captivating performances and unique improvisations.</p>
+            </div>
+        </div>
+        
+        <div class="guitarist-card">
+            <img src="assets/images/1.jpg" alt="Guitarist 2" class="guitarist-image">
+            <div class="guitarist-info">
+                <p>Specializes in Rock and Blues. Passionate about live performances with a remarkable stage presence.</p>
+            </div>
+        </div>
+        
+        <div class="guitarist-card">
+            <img src="assets/images/2.jpg" alt="Guitarist 3" class="guitarist-image">
+            <div class="guitarist-info">
+                <p>Fluent in Acoustic and Fingerstyle Guitar. Brings warmth and depth to every performance.</p>
+            </div>
+        </div>
+        
+        <div class="guitarist-card">
+            <img src="assets/images/4.jpg" alt="Guitarist 4" class="guitarist-image">
+            <div class="guitarist-info">
+                <p>Versatile in various genres, including Latin and Fusion. Known for technical skill and expressive play.</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="services.html" class="back-button">Back to Services</a>
+
+    <script>
+        window.addEventListener('load', () => {
+            document.body.classList.add('fade-in');
+        });
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                const href = this.getAttribute('href');
+                
+                if (href && !href.startsWith('#') && !href.startsWith('mailto')) {
+                    event.preventDefault();
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500); 
+                }
+            });
+        });
+    </script>
+</body>
+</html>

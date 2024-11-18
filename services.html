@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Services</title>
+    <link rel="stylesheet" href="assets/css/services.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html">
+                <img src="assets/images/Photo Jun 17, 12 54 35 AM.png" id="navphoto" alt="Logo or Image">
+            </a>
+            <nav class="nav-links">
+                <li><a href="events.html">EVENTS</a></li>
+                <li><a href="services.html">SERVICES</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="booking.html">BOOK NOW</a></li>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Our Event Services</h1>
+        
+        <div class="service-section">
+            <img src="assets/images/dj.jpg" alt="Sound Services" class="service-image">
+            <div class="service-content">
+                <h2>Sound</h2>
+                <div class="service-boxes">
+                    <a href="#" class="box">PA Speakers</a>
+                    <a href="#" class="box">Subwoofers</a>
+                    <a href="#" class="box">Wireless Microphones</a>
+                    <a href="#" class="box">Digital Mixing Board</a>
+                    <a href="#" class="box">Audio Cables & Adapters</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="service-section">
+            <img src="assets/images/lights.png" alt="Lighting Services" class="service-image">
+            <div class="service-content">
+                <h2>Lights</h2>
+                <div class="service-boxes">
+                    <a href="uplight.html" class="box">Up Lights</a>
+                    <a href="#" class="box">Moving Head Lights</a>
+                    <a href="#" class="box">Lasers</a>
+                    <a href="#" class="box">Cold Sparks</a>
+                    <a href="#" class="box">Fog / Haze Machine</a>
+                    <a href="#" class="box">LED Screens</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="service-section">
+            <img src="assets/images/live.png" alt="Live Band Services" class="service-image">
+            <div class="service-content">
+                <h2>Live Band</h2>
+                <div class="service-boxes">
+                    <a href="guitar.html" class="box">Guitar</a>
+                    <a href="#" class="box">Violin</a>
+                    <a href="#" class="box">Drums</a>
+                    <a href="#" class="box">Percussion</a>
+                    <a href="#" class="box">Saxophone</a>
+                    <a href="#" class="box">Harp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    window.addEventListener('load', () => {
+        document.body.classList.add('fade-in');
+    });
+
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(event) {
+            const href = this.getAttribute('href');
+            
+            if (href && !href.startsWith('#') && !href.startsWith('mailto')) {
+                event.preventDefault();
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500); 
+            }
+        });
+    });
+</script>
+
+</html>
