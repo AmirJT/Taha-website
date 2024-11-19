@@ -252,7 +252,13 @@ nav li:last-child a:hover {
     margin-top: 10px;
     color: #cccccc; 
 }
+/* Media Query for Devices Below 768px */
 @media (max-width: 768px) {
+    .banner-text {
+        margin-top: 90px;
+        margin-bottom: -20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
     .nav-container {
         flex-direction: column;
         align-items: center;
@@ -263,20 +269,21 @@ nav li:last-child a:hover {
     }
 
     #navphoto {
-        width: 120px;
+        width: 150px;
         margin-bottom: 5px;
     }
 
     .nav-links {
         flex-direction: row;
-        justify-content: center;
-        gap: 15px;
-        margin-top: 0;
-        width: 100%;
+        justify-content: center; /* Keep links centered */
+        gap: 10px; /* Add spacing between links */
+        margin-top: -30px;
+        margin-left: 10px;
+        margin-right: 25px;
     }
 
     .nav-links li {
-        margin: 0;
+        margin: 0 5px; /* Add a smaller margin between individual links */
     }
 
     nav a {
@@ -307,19 +314,18 @@ nav li:last-child a:hover {
         color: #ff4c4c;
         box-shadow: 0 0 10px rgba(255, 76, 76, 0.8);
     }
-}
-@media (max-width: 768px) {
+
     .event-section {
         padding: 15px 10px;
         background-color: #fff;
-        margin-top: 20px;
+        margin-top: 5px;
     }
 
     .event {
         display: flex;
-        flex-direction: row; 
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column; /* Stack content vertically */
+        align-items: center; /* Center content */
+        justify-content: flex-start;
         width: 95%;
         max-width: 600px;
         margin: 0 auto 20px auto;
@@ -331,15 +337,19 @@ nav li:last-child a:hover {
     }
 
     .event-info {
-        width: 60%; 
-        text-align: left; 
-        padding-right: 10px;
+        order: 1; /* Text appears first */
+        width: 100%; /* Full width for text */
+        text-align: left; /* Align text left */
+        padding: 10px 0;
     }
 
     .event img {
-        width: 180px; 
+        order: 2; /* Image appears next */
+        width: 100%; /* Full width image */
+        max-width: 200px;
         height: auto;
         object-fit: cover;
+        margin: 15px 0; /* Add spacing */
         border-radius: 5px;
     }
 
@@ -384,9 +394,10 @@ nav li:last-child a:hover {
     }
 
     .event-button {
+        order: 3; /* Button appears last */
         display: block;
-        margin: 15px auto 0 auto; /* Center the button horizontally */
-        width: 80%; /* Wider button for a prominent look */
+        margin: 15px auto 0 auto; /* Center button horizontally */
+        width: 80%; /* Wider button */
         background-color: #ff4c4c;
         color: #fff;
         padding: 12px;
@@ -404,34 +415,29 @@ nav li:last-child a:hover {
     .event-button:hover {
         background-color: #e60000; /* Slightly darker on hover */
     }
-    .banner-text {
-        text-align: center;
-        position: relative;
-        z-index: 2;
-        margin-top: 90px;
-    }
+}
 
-/* Smaller Devices */
+/* Media Query for Devices Below 480px */
 @media (max-width: 480px) {
     .event {
-        flex-direction: column; /* Stack content for very small devices */
-        align-items: center;
+        flex-direction: column; /* Stack content for small devices */
+        align-items: center; /* Center all content */
     }
 
     .event-info {
         width: 100%; /* Full width for text */
-        text-align: center; /* Center-align text */
+        text-align: center; /* Center align text */
         padding-right: 0;
     }
 
     .event img {
-        width: 100%; /* Full width for the image */
+        width: 100%; /* Full width image */
         max-width: 200px;
-        margin-bottom: 15px;
+        margin-bottom: 15px; /* Space below the image */
     }
 
     .event-button {
-        width: 90%; /* Center button for small screens */
+        width: 90%; /* Wider button for better appearance */
         padding: 10px;
     }
 }
