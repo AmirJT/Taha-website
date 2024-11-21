@@ -1,3 +1,4 @@
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -9,9 +10,20 @@ body {
     background-color: #121212; 
     color: #f0f0f0;
     overflow-x: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
+body.fade-in {
+    opacity: 1;
+}
 
+body.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Header */
 .nav-container {
     display: flex;
     align-items: center; 
@@ -100,16 +112,7 @@ nav li:last-child a:hover {
     box-shadow: 0 0 10px #ff4c4c; 
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-
+/* Redesigned Service Containers */
 .container {
     padding-top: 100px;
     width: 90%;
@@ -119,76 +122,96 @@ nav li:last-child a:hover {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: #e0e0e0;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .service-section {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    background-color: #1e1e1e;
+    background: linear-gradient(135deg, #222, #444);
     border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 30px;
-    border: 1px solid #333;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 25px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.service-section:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
 }
 
 .service-image {
-    width: 280px; 
-    height: 180px; 
-    border-radius: 10px;
-    margin-right: 20px;
-    border: 2px solid #333;
-    object-fit: cover; 
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.service-image:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
 }
 
 .service-content {
-    flex: 1;
-    text-align: left;
+    width: 100%;
+    text-align: center;
 }
 
 .service-content h2 {
-    font-size: 2rem;
-    color: #e0c040;
+    font-size: 2.2rem;
+    color: #ffcc00;
     margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .service-boxes {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
+    gap: 15px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .box {
-    background-color: #333;
+    background: linear-gradient(135deg, #444, #555);
     color: #e0e0e0;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 10px;
     text-align: center;
-    border: 1px solid #444;
-    text-decoration: none; 
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border: 1px solid #666;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 .box:hover {
-    background-color: #e0c040; 
-    color: #333; 
-}
-body {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 153, 0, 0.8);
 }
 
-body.fade-in {
-    opacity: 1;
-}
-
-body.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
+/* Mobile Styles */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
@@ -246,10 +269,9 @@ body.fade-out {
         color: #ff4c4c;
         box-shadow: 0 0 10px rgba(255, 76, 76, 0.8);
     }
-}
-@media (max-width: 768px) {
+
     .container {
-        padding-top: 210px;
+        padding-top: 150px;
         width: 95%;
     }
 
@@ -260,27 +282,19 @@ body.fade-out {
 
     .service-section {
         flex-direction: column;
-        align-items: center;
-        padding: 15px;
+        padding: 20px;
     }
 
     .service-image {
-        width: 100%; 
-        height: auto; 
-        margin: 0 0 15px 0; 
-    }
-
-    .service-content {
-        text-align: center;
+        max-width: 100%;
+        margin-bottom: 20px;
     }
 
     .service-content h2 {
         font-size: 1.8rem;
-        margin-bottom: 15px;
     }
 
     .service-boxes {
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }

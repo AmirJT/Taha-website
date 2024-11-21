@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box with Manual Slideshow and Description</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            font-family: Arial, sans-serif;
+            color: #e6e6e6;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.fade-in {
+            opacity: 1;
+        }
+
+        body.fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .box {
+            background: linear-gradient(135deg, rgba(40, 20, 48, 0.9), rgba(25, 15, 35, 0.9));
+            border: 1px solid #3a3a3a;
+            width: 90%;
+            max-width: 700px;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+            animation: fadeInBox 1s ease forwards;
+            opacity: 0;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .description {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #cccccc;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            margin-top: 10px;
+            animation: fadeInText 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        .arrow-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .arrow-button {
+            cursor: pointer;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #555, #333);
+            color: #e6e6e6;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+            transition: background 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .arrow-button:hover {
+            background: linear-gradient(135deg, #666, #444);
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #444, #222);
+            color: #e6e6e6;
+            font-size: 1em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #555, #333);
+            transform: scale(1.1);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.8);
+        }
+
+        @keyframes fadeInBox {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInText {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .box {
+                padding: 20px;
+            }
+
+            .slideshow-container {
+                height: 250px;
+            }
+
+            .description {
+                font-size: 1em;
+            }
+
+            .arrow-button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            .back-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <div class="slideshow-container">
+            <img src="assets/images/fog1.webp" class="slide active" alt="Uplight Image 1">
+            <img src="assets/images/fog2.webp" class="slide" alt="Uplight Image 2">
+            <img src="assets/images/fog3.jpg" class="slide" alt="Uplight Image 3">
+            <img src="assets/images/fog5.avif" class="slide" alt="Uplight Image 4">
+
+        </div>
+        <p class="description">
+            Atmosphere is everything, and my professional-grade fog and haze machines bring your event to life by adding a dynamic visual layer that complements music and lighting. Whether it’s a dreamy first dance or a high-energy party, these effects ensure your event stands out.            <div class="arrow-buttons">
+            <button class="arrow-button" onclick="changeSlide(-1)">Previous</button>
+            <button class="arrow-button" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <a href="services.html" class="back-button">Back to Services</a>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function changeSlide(direction) {
+            slideIndex = (slideIndex + direction + slides.length) % slides.length;
+            showSlide(slideIndex);
+        }
+
+        showSlide(slideIndex);
+
+        window.addEventListener('load', () => {
+            document.body.classList.add('fade-in');
+        });
+
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                const href = this.getAttribute('href');
+                
+                if (href && !href.startsWith('#') && !href.startsWith('mailto')) {
+                    event.preventDefault();
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

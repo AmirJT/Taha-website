@@ -91,3 +91,30 @@ menuClose.addEventListener('click', () => {
     menuIcon.style.display = 'flex';
     menuClose.style.display = 'none'; 
 });
+
+function isMobile() {
+    return window.innerWidth <= 768; // Mobile breakpoint
+}
+
+function setupMobileSlideshow() {
+    const slides = document.querySelectorAll(".slideshow-slide");
+    let slideIndex = 0;
+
+    function showSlides() {
+        slides.forEach((slide) => slide.classList.remove("active")); // Hide all slides
+        slideIndex++;
+        if (slideIndex > slides.length) slideIndex = 1; // Loop back to the first slide
+        slides[slideIndex - 1].classList.add("active"); // Show the current slide
+        setTimeout(showSlides, 3000); // Change slide every 3 seconds
+    }
+
+    if (isMobile()) {
+        slides[0].classList.add("active"); // Initialize the first slide
+        showSlides();
+    }
+}
+
+window.addEventListener("load", setupMobileSlideshow);
+window.addEventListener("resize", () => {
+    if (!isMobile()) location.reload(); // Reload page if switching back to desktop
+});

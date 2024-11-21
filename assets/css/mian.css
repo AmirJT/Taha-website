@@ -1271,14 +1271,14 @@ nav li:last-child a:hover {
     .nav-container {
         flex-direction: column;
         align-items: center;
-        padding: 5px 10px;
+        padding: 10px 15px;
         background: linear-gradient(135deg, #000000, #1a1a1a);
         height: auto;
         box-shadow: none;
     }
 
     #navphoto {
-        width: 150px;
+        width: 120px;
         margin-bottom: 5px;
     }
 
